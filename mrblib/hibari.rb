@@ -1,1 +1,2 @@
-class Hibari; end
+module Hibari
+end
