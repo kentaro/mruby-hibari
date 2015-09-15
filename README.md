@@ -1,6 +1,6 @@
 # mruby-hibari
 
-A Web application framework for Web servers that supports Rack-based API for mruby.
+A Web application framework for Web servers that support Rack-based API for mruby.
 
 ## Usage
 
