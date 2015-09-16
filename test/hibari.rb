@@ -56,9 +56,14 @@ assert 'Hibari::App#run' do
   assert_equal TestApp, res.class
 end
 
-assert 'Hibari::Request#params' do
+assert 'Hibari::Request#uri' do
   req = Hibari::Request.new(env)
   assert_equal(URI::HTTP, req.uri.class)
+end
+
+assert 'Hibari::Request#params' do
+  req = Hibari::Request.new(env)
+  assert_equal(req.params, {'foo' => 'bar', 'baz' => 'qux'})
 end
 
 assert 'Hibari::Request#env_accessors' do

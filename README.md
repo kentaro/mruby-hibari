@@ -48,6 +48,12 @@ Accesor to `ENV` passed from Web server.
 
 Build URI and returns it as `URI` object.
 
+#### `params()` => `Hash`
+
+Parse query string and returns it as `Hash` object.
+
+(__This method currently does nothing about decoding or other, just split the query string with `&` and `=`__)
+
 #### `request_method()` => `String`
 #### `script_name()`    => `String`
 #### `path_info()`      => `String`

@@ -11,7 +11,16 @@ module Hibari
     end
 
     def params
-      @params ||= Hash[URI::decode_www_form(query_string)] # not implemented yet
+      @params ||= (Proc.new {
+        params = {}
+
+        query_string.split('&').each do |pair|
+          k, v = pair.split('=')
+          params[k] = v
+        end
+
+        params
+      }).call
     end
 
     %w[
