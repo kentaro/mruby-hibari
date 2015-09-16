@@ -1,14 +1,12 @@
+MRUBY_CONFIG=File.expand_path(ENV['MRUBY_CONFIG'] || 'build_config.rb')
+
 file :mruby do
   sh 'git clone --depth=1 git://github.com/mruby/mruby.git'
 end
 
-file :build_config do
-  cp 'build_config.rb', 'mruby/build_config.rb'
-end
-
 desc 'test'
-task :test => [:mruby, :build_config] do
-  sh 'cd mruby && rake all test'
+task :test => :mruby do
+  sh "cd mruby && MRUBY_CONFIG=#{MRUBY_CONFIG} rake all test"
 end
 
 desc 'cleanup'
