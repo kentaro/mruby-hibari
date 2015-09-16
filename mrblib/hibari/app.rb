@@ -19,14 +19,14 @@ module Hibari
                 'nginx'
                elsif Kernel.const_defined?(:Apache)
                 'apache'
-               else
+               else # presume it's h2o
                 'h2o'
                end
 
       case engine
       when 'nginx' || 'apache'
         Kernel.run(self)
-      when 'h2o' # presume it's h2o
+      when 'h2o'
         self
       end
     end
