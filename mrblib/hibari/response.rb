@@ -3,7 +3,7 @@ module Hibari
     attr_accessor :code, :headers, :body
 
     def initialize
-      @code
+      @code    = 500
       @headers = {}
       @body    = []
     end
