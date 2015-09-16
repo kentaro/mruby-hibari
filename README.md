@@ -4,8 +4,8 @@ A Web application framework for Web servers that support mruby and Rack-based AP
 
 mruby-hibari currently supports the Web servers below:
 
-  * [ngx_mruby](http://ngx.mruby.org/) enabled Nginx
-  * [mod_mruby](http://mod.mruby.org/) enabled Apache
+  * [ngx_mruby](http://ngx.mruby.org/)-enabled Nginx
+  * [mod_mruby](http://mod.mruby.org/)-enabled Apache
   * [h2o](https://h2o.examp1e.net/)
 
 ## Synopsis
@@ -31,7 +31,7 @@ MyApp.new.run
 
 ### ngx_mruby, mod_mruby
 
-  1. Add dependency on mruby-hibari into the build_config.rb in mruby installation.
+  1. Add dependency on mruby-hibari into the build_config.rb in your mruby installation.
   2. Write mruby handler like above.
 
 ### h2o
@@ -45,17 +45,17 @@ MyApp.new.run
 
 #### `env()` => `Hash`
 
-Accesor to `ENV` passed from Web server.
+Read-only accessor to `ENV` passed from Web server.
 
 #### `uri()` => `URI`
 
-Build URI and returns it as `URI` object.
+Builds URI and returns it as `URI` object.
 
 #### `params()` => `Hash`
 
-Parse query string and returns it as `Hash` object.
+Parses query string and returns it as `Hash` object.
 
-(__This method currently does nothing about decoding or other, just split the query string with `&` and `=`__)
+(__This method currently does nothing about decoding or other; it just splits the query string with `&` and `=`__)
 
 #### `request_method()` => `String`
 #### `script_name()`    => `String`
