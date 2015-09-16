@@ -7,7 +7,7 @@ module Hibari
     end
 
     def uri
-      @uri ||= URI.parse("#{scheme}://#{server_name}#{request_uri}")
+      @uri ||= URI.parse("#{scheme}://#{server_name}:#{server_port}#{request_uri}")
     end
 
     def params
