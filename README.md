@@ -1,10 +1,10 @@
 # mruby-hibari
 
-A Web application framework for Web servers that support Rack-based API for mruby.
+A Web application framework for Web servers that support mruby and Rack-based API.
 
 ## Usage
 
-### ngx_mruby, mod_mruby
+### [ngx_mruby](http://ngx.mruby.org/), [mod_mruby](http://mod.mruby.org/)
 
   1. Add dependency on `mruby-hibari` into `build_config.rb`.
   2. Write mruby handler like below:
@@ -21,7 +21,7 @@ end
 run MyApp.new
 ```
 
-### h2o
+### [h2o](https://h2o.examp1e.net/)
 
   1. `git clone` at h2o/deps: `cd h2o/deps && git clone https://github.com/kentaro/mruby-hibari`
   2. Write mruby handler like below:
@@ -44,45 +44,45 @@ h2o doesn't requre to execute `run` method unlike Rack's spec.
 
 ### Hibari::Request
 
-#### `env()` => Hash
+#### `env()` => `Hash`
 
 Accesor to `ENV` passed from Web server.
 
-#### `uri()` => URI
+#### `uri()` => `URI`
 
 Build URI and returns it as `URI` object.
 
-#### `request_method()` => String
-#### `script_name()`    => String
-#### `path_info()`      => String
-#### `request_uri()`    => String
-#### `query_string()`   => String
-#### `server_name()`    => String
-#### `server_addr()`    => String
-#### `remote_addr()`    => String
-#### `remote_port()`    => String
-#### `scheme()`         => String
+#### `request_method()` => `String`
+#### `script_name()`    => `String`
+#### `path_info()`      => `String`
+#### `request_uri()`    => `String`
+#### `query_string()`   => `String`
+#### `server_name()`    => `String`
+#### `server_addr()`    => `String`
+#### `remote_addr()`    => `String`
+#### `remote_port()`    => `String`
+#### `scheme()`         => `String`
 
 Shortcuts to `env[XXX`].
 
 ### Hibari::Response
 
-#### `code()`     => Int
+#### `code()`     => `Int`
 #### `code=(Int)` => ()
 
 Accessor to HTTP response code.
 
-#### `headers()`      => Hash
+#### `headers()`      => `Hash`
 #### `headers=(Hash)` => ()
 
 Accessor to HTTP response headers.
 
-#### `body()`       => Array
+#### `body()`       => `Array`
 #### `body=(Array)` => ()
 
 Accessor to HTTP response body.
 
-#### `to_rack()` => Array
+#### `to_rack()` => `Array`
 
 Returns an array that follows Rack's spec.
 
