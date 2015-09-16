@@ -2,29 +2,15 @@
 
 A Web application framework for Web servers that support mruby and Rack-based API.
 
-## Usage
+mruby-hibari currently supports the Web servers below:
 
-### [ngx_mruby](http://ngx.mruby.org/), [mod_mruby](http://mod.mruby.org/)
+  * [ngx_mruby](http://ngx.mruby.org/) enabled Nginx
+  * [mod_mruby](http://mod.mruby.org/) enabled Apache
+  * [h2o](https://h2o.examp1e.net/)
 
-  1. Add dependency on `mruby-hibari` into `build_config.rb`.
-  2. Write mruby handler like below:
+## Synopsis
 
-```ruby
-class MyApp < Hibari::App
-  def build
-    res.code = 200
-    res.headers["content-type"] = "text/html; charset=utf8"
-    res.body.push("Hello, World!")
-  end
-end
-
-run MyApp.new
-```
-
-### [h2o](https://h2o.examp1e.net/)
-
-  1. `git clone` at h2o/deps: `cd h2o/deps && git clone https://github.com/kentaro/mruby-hibari`
-  2. Write mruby handler like below:
+Write once, run the same on any servers above.
 
 ```ruby
 class MyApp < Hibari::App
@@ -35,10 +21,20 @@ class MyApp < Hibari::App
   end
 end
 
-MyApp.new
+MyApp.new.run
 ```
 
-h2o doesn't requre to execute `run` method unlike Rack's spec.
+## How to Setup
+
+### ngx_mruby, mod_mruby
+
+  1. Add dependency on mruby-hibari into the build_config.rb in mruby installation.
+  2. Write mruby handler like above.
+
+### h2o
+
+  1. `git clone` at h2o/deps to embed mruby-hibari: `cd h2o/deps && git clone https://github.com/kentaro/mruby-hibari`
+  2. Write mruby handler like above.
 
 ## API
 
@@ -62,6 +58,7 @@ Build URI and returns it as `URI` object.
 #### `remote_addr()`    => `String`
 #### `remote_port()`    => `String`
 #### `scheme()`         => `String`
+#### `engine_name()`    => `String`
 
 Shortcuts to `env[XXX`].
 

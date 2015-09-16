@@ -14,7 +14,7 @@ env = {
   'rack.multiprocess' => true,
   'rack.run_once'     => false,
   'rack.hijack?'      => false,
-  'server.name'       => 'Hibari',
+  'server.name'       => 'test server',
   'server.version'    => '1.0',
 }
 
@@ -36,6 +36,26 @@ assert 'Hibari::App#call' do
   assert_equal ['test'],          res[2]
 end
 
+assert 'Hibari::App#run' do
+  app = TestApp.new
+
+  # When the Web server is Nginx or Apache
+  (Proc.new {
+    Kernel.const_set(:Nginx, true)
+    Kernel.define_method(:run) {|obj| obj.res.to_rack }
+
+    res = app.run
+    assert_equal Array, res.class
+
+    Kernel.send(:remove_const, :Nginx)
+    Kernel.send(:remove_method, :run)
+  }).call
+
+  # Or it is h2o
+  res = app.run
+  assert_equal TestApp, res.class
+end
+
 assert 'Hibari::Request#params' do
   req = Hibari::Request.new(env)
   assert_equal(URI::HTTP, req.uri.class)
@@ -55,6 +75,7 @@ assert 'Hibari::Request#env_accessors' do
   assert_equal req.remote_addr,    env['REMOTE_ADDR']
   assert_equal req.remote_port,    env['REMOTE_PORT']
   assert_equal req.scheme,         env['rack.url_scheme']
+  assert_equal req.engine_name,    env['server.name']
 end
 
 assert 'Hibari::Request#to_rack' do

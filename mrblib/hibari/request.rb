@@ -34,5 +34,9 @@ module Hibari
     def scheme
       env['rack.url_scheme']
     end
+
+    def engine_name
+      env['server.name']
+    end
   end
 end
