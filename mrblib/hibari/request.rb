@@ -9,7 +9,7 @@ module Hibari
     def params
       unless @params
         @params = {}
-        @env['QUERY_STRING'].split('&').map do |p|
+        @env['QUERY_STRING'].split('&').each do |p|
           k, v = p.split('=')
           @params[k] = v
         end
