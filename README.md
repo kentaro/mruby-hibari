@@ -18,6 +18,9 @@ class MyApp < Hibari::App
     res.code = 200
     res.headers["content-type"] = "text/html; charset=utf8"
     res.body.push("Hello, World!")
+    req.params.each do |k,v|
+      res.body.push("#{k}: #{v})
+    end
   end
 end
 
