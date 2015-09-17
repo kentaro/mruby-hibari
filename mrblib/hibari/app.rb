@@ -9,16 +9,16 @@ module Hibari
     def call(env)
       @env = env
       @req = Request.new(env)
-      @res.flash!
+      @res.flash! if @res.dirty?
 
       build
       res.to_rack
     end
 
     def run
-      engine = if Kernel.const_defined?(:Nginx)
+      engine = if Object.const_defined?(:Nginx)
                 'nginx'
-               elsif Kernel.const_defined?(:Apache)
+               elsif Object.const_defined?(:Apache)
                 'apache'
                else # presume it's h2o
                 'h2o'

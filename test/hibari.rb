@@ -50,14 +50,14 @@ assert 'Hibari::App#run' do
 
   # When the Web server is Nginx or Apache
   (Proc.new {
-    Kernel.const_set(:Nginx, true)
-    Kernel.define_method(:run) {|obj| obj.res.to_rack }
+    Object.const_set(:Nginx, true)
+    Object.define_method(:run) {|obj| obj.res.to_rack }
 
     res = app.run
     assert_equal Array, res.class
 
-    Kernel.send(:remove_const, :Nginx)
-    Kernel.send(:remove_method, :run)
+    Object.send(:remove_const, :Nginx)
+    Object.send(:remove_method, :run)
   }).call
 
   # Or it is h2o
