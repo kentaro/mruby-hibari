@@ -64,7 +64,7 @@ Read-only accessor to `ENV` passed from Web server.
 
 #### `uri()` => `URI`
 
-Builds URI and returns it as `URI` object.
+Builds URI and returns it as `URI` object (See https://github.com/zzak/mruby-uri for details).
 
 #### `params()` => `Hash`
 
