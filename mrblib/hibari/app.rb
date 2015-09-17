@@ -32,3 +32,9 @@ module Hibari
     end
   end
 end
+
+Kernel.define_method(:hibari) do |&block|
+  app = Hibari::App.new
+  app.class.define_method(:build, &block)
+  app.run
+end

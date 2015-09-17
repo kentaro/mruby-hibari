@@ -12,6 +12,8 @@ mruby-hibari currently supports the Web servers below:
 
 Write once, run the same on any servers above.
 
+### OOP Style
+
 ```ruby
 class MyApp < Hibari::App
   def build
@@ -25,6 +27,19 @@ class MyApp < Hibari::App
 end
 
 MyApp.new.run
+```
+
+### DSL Style
+
+```ruby
+hibari do
+  res.code = 200
+  res.headers["content-type"] = "text/html; charset=utf8"
+  res.body.push("Hello, World!")
+  req.params.each do |k,v|
+    res.body.push("#{k}: #{v}")
+  end
+end
 ```
 
 ## How to Setup

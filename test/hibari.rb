@@ -18,6 +18,15 @@ env = {
   'server.version'    => '1.0',
 }
 
+assert 'hibari' do
+  app = hibari do
+    res.body = ['test']
+  end
+
+  assert_equal Hibari::App, app.class
+  assert_equal ['test'], app.call(env)[2]
+end
+
 class TestApp < Hibari::App
   def build
     res.code    = 200
