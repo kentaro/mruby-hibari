@@ -3,6 +3,10 @@ module Hibari
     attr_accessor :code, :headers, :body
 
     def initialize
+      flash!
+    end
+
+    def flash!
       @code    = 500
       @headers = {}
       @body    = []

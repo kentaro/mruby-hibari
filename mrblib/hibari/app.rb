@@ -9,6 +9,7 @@ module Hibari
     def call(env)
       @env = env
       @req = Request.new(env)
+      @res.flash!
 
       build
       res.to_rack

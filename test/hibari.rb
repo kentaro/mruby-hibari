@@ -92,9 +92,25 @@ assert 'Hibari::Request#env_accessors' do
   assert_equal req.engine_name,    env['server.name']
 end
 
-assert 'Hibari::Request#to_rack' do
+assert 'Hibari::Response#to_rack' do
+  res = Hibari::Response.new
+
+  assert_equal [500, {}, []], res.to_rack
+end
+
+assert 'Hibari::Response#flash!' do
   res = Hibari::Response.new
   res.code = 200
+  res.headers['x-test'] = 1
+  res.body = ['test']
 
-  assert_equal [200, {}, []], res.to_rack
+  assert_equal res.code, 200
+  assert_equal(res.headers, {'x-test' => 1})
+  assert_equal res.body, ['test']
+
+  res.flash!
+
+  assert_equal res.code, 500
+  assert_equal(res.headers, {})
+  assert_equal res.body, []
 end
