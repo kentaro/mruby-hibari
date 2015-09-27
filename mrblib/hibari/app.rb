@@ -25,7 +25,7 @@ module Hibari
                end
 
       case engine
-      when 'nginx' || 'apache'
+      when 'nginx', 'apache'
         Kernel.run(self)
       when 'h2o'
         self
